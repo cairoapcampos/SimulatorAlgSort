@@ -73,9 +73,9 @@ Os vetores devem ter de **2 a 16 elementos**, com os seguintes limites:
 
 | Tecnologia | Uso |
 |---|---|
-| Node.js 22 | Execução da aplicação JavaScript |
-| Express | Rotas HTTP, validação das entradas e entrega das páginas |
-| EJS | Renderização das páginas e componentes HTML |
+| Node.js 24 | Execução da aplicação JavaScript |
+| Express 4 | Rotas HTTP, validação das entradas e entrega das páginas |
+| EJS 3 | Renderização das páginas e componentes HTML |
 
 ### Front-end
 
@@ -120,7 +120,7 @@ Os arquivos Python servem como referência de código para os simuladores. A apl
 
 ## Pré-requisitos
 
-- Node.js 22.
+- Node.js 24.
 - npm.
 
 Se utilizar nvm, execute `nvm use` na raiz do projeto para selecionar a versão indicada em `.nvmrc`.
