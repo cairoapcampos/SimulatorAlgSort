@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('partials/head') %>
+<body>
+  <%- include('partials/cabecalho') %>
+
+  <main>
+    <section class="painel">
+      <div class="info">
+        <span>gap: <strong id="gap">-</strong></span>
+        <span>i: <strong id="i">-</strong></span>
+        <span>j: <strong id="j">-</strong></span>
+        <span>comparações: <strong id="comps">0</strong></span>
+        <span>deslocamentos: <strong id="desl">0</strong></span>
+        <span>passo: <strong id="contador">0</strong></span>
+      </div>
+
+      <div id="tabuleiro" class="tabuleiro">
+        <svg id="setas" class="setas">
+          <defs>
+            <marker id="m-comp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f59e0b"/></marker>
+            <marker id="m-desl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f87171"/></marker>
+            <marker id="m-valor" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3b82f6"/></marker>
+          </defs>
+          <g id="setas-g"></g>
+        </svg>
+        <div class="mao"><code>valor</code> = <span id="caixaValor" class="caixa-valor">—</span></div>
+        <div id="barras" class="barras"></div>
+      </div>
+
+      <p id="grupos" class="grupos"></p>
+
+      <p id="explicacao" class="explicacao"></p>
+
+      <%- include('partials/controles') %>
+
+      <div class="legenda">
+        <span><i class="c-comp"></i> comparando / copiando</span>
+        <span><i class="c-valor"></i> posição j</span>
+        <span><i class="c-ok"></i> ordenado</span>
+        <span>Cores diferentes = sub-listas do gap</span>
+      </div>
+
+      <%- include('partials/resumo') %>
+    </section>
+
+    <div class="lateral">
+      <%- include('partials/codigo') %>
+      <%- include('partials/complexidade') %>
+    </div>
+  </main>
+
+  <%- include('partials/scripts') %>
+</body>
+</html>

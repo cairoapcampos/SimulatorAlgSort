@@ -1,0 +1,6 @@
+<nav class="abas" aria-label="Navegação principal">
+  <a href="/" class="<%= algoritmo === 'home' ? 'ativa' : '' %>"<% if (algoritmo === 'home') { %> aria-current="page"<% } %>>Início</a>
+  <% simuladores.forEach((s) => { %>
+    <a href="<%= s.rota %>" class="<%= algoritmo === s.id ? 'ativa' : '' %>"<% if (algoritmo === s.id) { %> aria-current="page"<% } %>><%= s.nome %></a>
+  <% }) %>
+</nav>

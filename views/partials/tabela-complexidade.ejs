@@ -1,0 +1,25 @@
+<figure class="figura-tabela">
+<figcaption id="tabela-5">Tabela 5. Comparação das complexidades computacionais dos algoritmos de ordenação</figcaption>
+<div class="tabela-rolavel" tabindex="0" role="region" aria-labelledby="tabela-5">
+<table class="tabela-complexidade" aria-labelledby="tabela-5">
+  <thead>
+    <tr><th scope="col">Algoritmo</th><th scope="col">Melhor caso</th><th scope="col">Caso médio</th><th scope="col">Pior caso</th><th scope="col">Espaço auxiliar</th><th scope="col">Estável</th></tr>
+  </thead>
+  <tbody>
+    <% algoritmos.forEach(({ nome, complexidade }) => { %>
+      <tr>
+        <th scope="row"><%= nome %></th>
+        <td><%= complexidade.melhor %></td>
+        <td><%= complexidade.medio %><% if (complexidade.notaMedia) { %><sup><%= complexidade.notaMedia %></sup><% } %></td>
+        <td><%= complexidade.pior %></td>
+        <td><%= complexidade.espaco %></td>
+        <td><%= complexidade.estavel %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+</div>
+</figure>
+<% algoritmos.filter(({ complexidade }) => complexidade.notaNaTabela).forEach(({ complexidade }) => { %>
+  <%- include('nota-complexidade', { complexidade }) %>
+<% }) %>

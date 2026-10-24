@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('partials/head') %>
+<body>
+  <%- include('partials/cabecalho') %>
+
+  <main>
+    <section class="painel radix">
+      <div class="info">
+        <span>n: <strong id="tamHeap">-</strong></span>
+        <span>i: <strong id="i">-</strong></span>
+        <span>maior: <strong id="maior">-</strong></span>
+        <span>esquerda: <strong id="esq">-</strong></span>
+        <span>direita: <strong id="dir">-</strong></span>
+        <span>comparações: <strong id="comps">0</strong></span>
+        <span>trocas: <strong id="movs">0</strong></span>
+        <span>passo: <strong id="contador">0</strong></span>
+      </div>
+
+      <svg id="arvore" class="arvore" role="img" aria-label="Heap representado como árvore binária"></svg>
+
+      <div class="rotulo-fila"><code>A</code></div>
+      <div id="fila-a" class="fila"></div>
+
+      <p class="pilha">Pilha de chamadas: <span id="pilha"></span></p>
+
+      <p id="explicacao" class="explicacao"></p>
+
+      <%- include('partials/controles') %>
+
+      <div class="legenda">
+        <span><i class="c-valor"></i> raiz <code>i</code></span>
+        <span><i class="c-comp"></i> <code>maior</code></span>
+        <span><i class="c-lado"></i> filhos (contorno)</span>
+        <span><i class="c-troca"></i> troca</span>
+        <span><i class="c-ok"></i> parte ordenada</span>
+      </div>
+
+      <%- include('partials/resumo') %>
+    </section>
+
+    <div class="lateral">
+      <%- include('partials/codigo') %>
+      <%- include('partials/complexidade') %>
+    </div>
+  </main>
+
+  <%- include('partials/scripts') %>
+</body>
+</html>

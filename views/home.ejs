@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('partials/head') %>
+<body class="pagina-home">
+  <%- include('partials/cabecalho') %>
+
+  <main class="home home-leitura">
+    <article class="artigo-home" aria-labelledby="introducao-home">
+      <div class="introducao-home prosa-home">
+        <h1 id="introducao-home">Algoritmos de Ordenação</h1>
+      </div>
+
+    <section class="secao-home texto-home" aria-labelledby="sobre-shell">
+      <div class="titulo-secao prosa-home">
+        <h2 id="sobre-shell">Shell Sort</h2>
+      </div>
+      <div class="prosa-home">
+        <p>O Shell Sort é um algoritmo de ordenação baseado em comparações, que constitui uma extensão do Insertion Sort (ordenação por inserção). Sua principal característica é permitir comparações e deslocamentos entre elementos não adjacentes, utilizando intervalos denominados gaps. Esses intervalos são progressivamente reduzidos até atingirem o valor 1, permitindo movimentar antecipadamente elementos distantes de suas posições finais e reduzir o trabalho necessário na última passagem de ordenação (<a class="citacao" href="#ref-shell">Shell, 1959</a>; <a class="citacao" href="#ref-frank">Frank; Lazarus, 1960</a>).</p>
+        <p>Na sequência original proposta por <a class="citacao" href="#ref-shell">Shell (1959)</a>, o intervalo inicial corresponde à metade do tamanho do vetor, considerando a divisão inteira, e é reduzido sucessivamente pela metade até atingir o valor 1. Para um vetor com 16 elementos, por exemplo, os intervalos são 8, 4, 2 e 1. A escolha da sequência de intervalos influencia o desempenho do algoritmo, conforme investigado por <a class="citacao" href="#ref-frank">Frank e Lazarus (1960)</a>, que propuseram modificações para melhorar sua eficiência.</p>
+        <p>Em cada passagem, o algoritmo realiza uma ordenação por inserção sobre subsequências formadas por elementos separados pelo intervalo atual. Os elementos são comparados e deslocados até encontrarem posições adequadas. O procedimento é repetido com intervalos progressivamente menores, até a última passagem, quando a ordenação por inserção é realizada com intervalo igual a 1 (<a class="citacao" href="#ref-shell">Shell, 1959</a>; <a class="citacao" href="#ref-sepahyar">Sepahyar; Vaziri; Rezaei, 2019</a>).</p>
+        <p>A <a href="#tabela-1">Tabela 1</a> apresenta um exemplo de ordenação pelo Shell Sort utilizando um vetor de oito elementos e a sequência original de intervalos 4, 2 e 1. Para cada intervalo, são apresentados os índices das subsequências formadas, o vetor de entrada e o vetor resultante da passagem. Dessa forma, é possível observar como os elementos são reorganizados e como o vetor resultante de cada passagem é utilizado como entrada na passagem seguinte, até que esteja completamente ordenado.</p>
+      </div>
+      <%- include('partials/tabela-exemplo', { tabela: tabelas.shell }) %>
+    </section>
+
+    <section class="secao-home texto-home" aria-labelledby="sobre-heap">
+      <div class="titulo-secao prosa-home">
+        <h2 id="sobre-heap">Heap Sort</h2>
+      </div>
+      <div class="prosa-home">
+        <p>O Heap Sort é um algoritmo de ordenação baseado em comparações. Seu funcionamento utiliza uma estrutura denominada heap, representável por uma árvore binária completa, na qual os elementos obedecem a uma propriedade de ordenação entre os nós pais e seus filhos. Na organização denominada max-heap, cada nó pai possui valor maior ou igual ao de seus filhos, garantindo que o maior elemento esteja localizado na raiz da estrutura (<a class="citacao" href="#ref-williams">Williams, 1964</a>; <a class="citacao" href="#ref-islam">Islam et al., 2026</a>).</p>
+        <p>A estrutura heap pode ser representada diretamente em um vetor, sem a necessidade de utilizar nós e ponteiros, pois as relações entre pais e filhos podem ser determinadas pelas posições dos elementos. Essa representação permite organizar e manipular os elementos sem construir explicitamente uma árvore (<a class="citacao" href="#ref-williams">Williams, 1964</a>; <a class="citacao" href="#ref-floyd">Floyd, 1964</a>).</p>
+        <p>O Heap Sort possui duas etapas principais: construção do max-heap e ordenação. Na primeira, um procedimento de reorganização, conhecido como heapify, compara cada nó com seus filhos e realiza as trocas necessárias para preservar a propriedade da estrutura. A construção ocorre de baixo para cima, começando pelo último nó que possui filhos e avançando em direção à raiz. Os nós folha não necessitam de reorganização inicial, pois já satisfazem individualmente essa propriedade (<a class="citacao" href="#ref-islam">Islam et al., 2026</a>).</p>
+        <p>A <a href="#tabela-2">Tabela 2</a> exemplifica a construção do max-heap utilizando um vetor de oito elementos. A função heapify é aplicada aos índices 3, 2, 1 e 0, correspondentes aos nós que possuem filhos. Para cada índice, são apresentados o vetor de entrada, a operação realizada e o vetor resultante da reorganização.</p>
+      </div>
+      <%- include('partials/tabela-exemplo', { tabela: tabelas.heapConstrucao }) %>
+      <div class="prosa-home">
+        <p>Na etapa de ordenação, o maior elemento, localizado na raiz do max-heap, é trocado com o último elemento da região ainda não ordenada. Em seguida, essa região é reduzida e a função heapify restabelece a propriedade da estrutura. O procedimento é repetido até que todos os elementos estejam organizados em ordem crescente (<a class="citacao" href="#ref-islam">Islam et al., 2026</a>).</p>
+        <p>A <a href="#tabela-3">Tabela 3</a> apresenta a etapa de ordenação a partir do max-heap construído na <a href="#tabela-2">Tabela 2</a>. Em cada passagem, são apresentados o vetor de entrada, o vetor após a troca do maior elemento com o último da região não ordenada e os estados do vetor após a verificação e a possível troca de cada chamada de heapify, antes da chamada recursiva seguinte. As chamadas aparecem em colunas, na ordem de execução; estados repetidos indicam que não houve troca e o símbolo — indica que a chamada não ocorreu. O símbolo | separa a região ainda não ordenada, à esquerda, da região já ordenada, à direita, permitindo observar como esta última aumenta progressivamente até abranger todo o vetor.</p>
+      </div>
+      <%- include('partials/tabela-exemplo', { tabela: tabelas.heapOrdenacao }) %>
+    </section>
+
+    <section class="secao-home texto-home" aria-labelledby="sobre-radix">
+      <div class="titulo-secao prosa-home">
+        <h2 id="sobre-radix">Radix Sort</h2>
+      </div>
+      <div class="prosa-home">
+        <p>O Radix Sort é um algoritmo de ordenação não baseado em comparações diretas entre os valores completos, que organiza os elementos mediante o processamento sucessivo dos componentes de suas chaves, como dígitos ou bytes. Na estratégia Least Significant Digit (LSD), os elementos são ordenados a partir dos dígitos menos significativos, começando pelas unidades e avançando sucessivamente para as dezenas, centenas e demais posições. Esse procedimento utiliza um método de ordenação estável, como o Counting Sort, para preservar a organização estabelecida nas passagens anteriores (<a class="citacao" href="#ref-marcellino">Marcellino et al., 2021</a>; <a class="citacao" href="#ref-alaanzy">Ala’Anzy et al., 2024</a>).</p>
+        <p>Inicialmente, o algoritmo identifica o maior valor do vetor para determinar a quantidade de posições decimais que precisam ser processadas. Em cada passagem, os elementos são organizados de acordo com o dígito correspondente à posição decimal considerada (<a class="citacao" href="#ref-alaanzy">Ala’Anzy et al., 2024</a>).</p>
+        <p>O Counting Sort utilizado em cada passagem emprega dois vetores auxiliares: um de contagem, com dez posições inicialmente preenchidas com zero, e outro de saída, com o mesmo tamanho do vetor original. Primeiro, são contabilizadas as ocorrências dos dígitos de 0 a 9 e calculadas suas frequências acumuladas, utilizadas para determinar as posições dos elementos no vetor de saída (<a class="citacao" href="#ref-salihu">Salihu; Hoti; Hoti, 2022</a>).</p>
+        <p>Em seguida, os elementos são distribuídos no vetor auxiliar, percorrendo-se o vetor original do final para o início. Esse procedimento, combinado com as frequências acumuladas, preserva a ordem relativa dos elementos com dígitos iguais. Essa estabilidade é essencial para a estratégia LSD, pois mantém a organização estabelecida nas passagens anteriores (<a class="citacao" href="#ref-alaanzy">Ala’Anzy et al., 2024</a>). Ao final de cada etapa, os elementos são copiados de volta ao vetor original, e o processo continua até que todas as posições decimais necessárias tenham sido consideradas.</p>
+        <p>A <a href="#tabela-4">Tabela 4</a> exemplifica a ordenação pelo Radix Sort utilizando um vetor de sete elementos com diferentes quantidades de dígitos, variando de um a cinco. Na estratégia LSD, são processadas sucessivamente as unidades, dezenas, centenas, unidades de milhar e dezenas de milhar, considerando a quantidade de posições decimais do maior elemento. Quando um número não possui a posição decimal analisada, o dígito correspondente é considerado zero. Em cada passagem, o Counting Sort organiza os elementos de acordo com o dígito correspondente, preservando a ordem relativa daqueles que possuem dígitos iguais.</p>
+      </div>
+      <%- include('partials/tabela-exemplo', { tabela: tabelas.radix }) %>
+    </section>
+
+    <section class="secao-home texto-home" aria-labelledby="comparacao-home">
+      <div class="titulo-secao prosa-home">
+        <h2 id="comparacao-home">Comparação das complexidades computacionais</h2>
+      </div>
+      <div class="prosa-home">
+        <p>O Shell Sort realiza a ordenação diretamente no vetor original, apresentando complexidade espacial auxiliar O(1). Sua complexidade temporal depende da sequência de intervalos utilizada, sendo O(n²) no pior caso para a sequência original. O algoritmo não é estável, pois os deslocamentos entre posições distantes podem alterar a ordem relativa de elementos com valores iguais (<a class="citacao" href="#ref-alaanzy">Ala’Anzy et al., 2024</a>).</p>
+        <p>O Heap Sort apresenta complexidade temporal O(n log n) nos casos melhor, médio e pior. A construção inicial do heap exige tempo O(n), enquanto cada reorganização durante a ordenação possui custo máximo de O(log n). Embora a ordenação ocorra diretamente no vetor original, a implementação recursiva da função heapify utilizada nos algoritmos analisados apresenta complexidade espacial auxiliar O(log n) no pior caso, devido à pilha de execução. O algoritmo não é estável, pois as trocas podem alterar a ordem relativa de elementos com valores iguais (<a class="citacao" href="#ref-marcellino">Marcellino et al., 2021</a>; <a class="citacao" href="#ref-alaanzy">Ala’Anzy et al., 2024</a>).</p>
+        <p>O Radix Sort apresentado possui complexidade temporal O(d(n+b)), em que n representa a quantidade de elementos, d corresponde ao número de dígitos do maior valor e b representa a base numérica, neste caso 10. Quando a base numérica e a quantidade de dígitos são constantes em relação ao tamanho da entrada, a complexidade temporal é O(n). A complexidade espacial auxiliar é O(n+b), devido aos vetores de contagem e saída. O algoritmo é estável em razão da utilização de uma versão estável do Counting Sort em cada passagem (<a class="citacao" href="#ref-marcellino">Marcellino et al., 2021</a>; <a class="citacao" href="#ref-alaanzy">Ala’Anzy et al., 2024</a>).</p>
+        <p>A <a href="#tabela-5">Tabela 5</a> sintetiza as complexidades temporais e espaciais dos algoritmos apresentados, considerando as características das implementações analisadas.</p>
+      </div>
+      <%- include('partials/tabela-complexidade', { algoritmos: simuladores }) %>
+    </section>
+
+    <section class="secao-home texto-home referencias-home" aria-labelledby="referencias-home">
+      <h2 id="referencias-home">Referências</h2>
+      <ul>
+        <li id="ref-alaanzy">ALA’ANZY, Mohammed Alaa; MAZHIT, Zhanar; ALA’ANZY, Alaa Fadhil; ALGARNI, Abdulmohsen; AKHMEDOV, Ramis; BAUYRZHAN, Abdiyev. Comparative analysis of sorting algorithms: a review. In: INTERNATIONAL CONFERENCE ON SOFT COMPUTING &amp; MACHINE INTELLIGENCE (ISCMI), 11., 2024, Melbourne. <em>Proceedings [...]</em>. IEEE, 2024. DOI: <a href="https://doi.org/10.1109/ISCMI63661.2024.10851593">10.1109/ISCMI63661.2024.10851593</a>.</li>
+        <li id="ref-floyd">FLOYD, R. W. Algorithm 245: Treesort 3. <em>Communications of the ACM</em>, v. 7, n. 12, p. 701, 1964. DOI: <a href="https://doi.org/10.1145/355588.365103">10.1145/355588.365103</a>.</li>
+        <li id="ref-frank">FRANK, R. M.; LAZARUS, R. B. A high-speed sorting procedure. <em>Communications of the ACM</em>, v. 3, n. 1, p. 20–22, 1960. DOI: <a href="https://doi.org/10.1145/366947.366957">10.1145/366947.366957</a>.</li>
+        <li id="ref-islam">ISLAM, Md Sydul; HALDER, Pranto; RAHMAN, Shah Rafatur; SHAKIL, Shahriar; KAMARUDIN, Nur Shazwani; ZAMAN, Ohahidur; ISLAM, Md Soyaeb; AL MAMUN, Md Abdulla. Cross-language evaluation of sorting algorithms on various input patterns: a comparative study. <em>Journal of Computer Languages</em>, maio 2026. Art. 101397. DOI: <a href="https://doi.org/10.1016/j.cola.2026.101397">10.1016/j.cola.2026.101397</a>.</li>
+        <li id="ref-marcellino">MARCELLINO, Marcellino; PRATAMA, Davin William; SUNTIARKO, Steven Santoso; MARGI, Kristien. Comparative of advanced sorting algorithms (Quick Sort, Heap Sort, Merge Sort, Intro Sort, Radix Sort) based on time and memory usage. In: INTERNATIONAL CONFERENCE ON COMPUTER SCIENCE AND ARTIFICIAL INTELLIGENCE (ICCSAI), 1., 2021, Jakarta. <em>Proceedings [...]</em>. IEEE, 2021. DOI: <a href="https://doi.org/10.1109/ICCSAI53272.2021.9609715">10.1109/ICCSAI53272.2021.9609715</a>.</li>
+        <li id="ref-salihu">SALIHU, Armend; HOTI, Mërgim; HOTI, Arbër. A review of performance and complexity on sorting algorithms. In: INTERNATIONAL CONFERENCE ON COMPUTING, NETWORKING, TELECOMMUNICATIONS &amp; ENGINEERING SCIENCES APPLICATIONS (CoNTESA), 2022, Skopje. <em>Proceedings [...]</em>. IEEE, 2022. p. 45–50. DOI: <a href="https://doi.org/10.1109/CoNTESA57046.2022.10011382">10.1109/CoNTESA57046.2022.10011382</a>.</li>
+        <li id="ref-sepahyar">SEPAHYAR, Soheil; VAZIRI, Reza; REZAEI, Marzieh. Comparing four important sorting algorithms based on their time complexity. In: INTERNATIONAL CONFERENCE ON ALGORITHMS, COMPUTING AND ARTIFICIAL INTELLIGENCE (ACAI), 2., 2019, Sanya. <em>Proceedings [...]</em>. New York: ACM, 2019. DOI: <a href="https://doi.org/10.1145/3377713.3377808">10.1145/3377713.3377808</a>.</li>
+        <li id="ref-shell">SHELL, D. L. A high-speed sorting procedure. <em>Communications of the ACM</em>, v. 2, n. 7, p. 30–32, 1959. DOI: <a href="https://doi.org/10.1145/368370.368387">10.1145/368370.368387</a>.</li>
+        <li id="ref-williams">WILLIAMS, J. W. J. Algorithm 232: Heapsort. <em>Communications of the ACM</em>, v. 7, n. 6, p. 347–348, 1964. DOI: <a href="https://doi.org/10.1145/512274.3734138">10.1145/512274.3734138</a>.</li>
+      </ul>
+    </section>
+    </article>
+  </main>
+  <script src="/home.js" defer></script>
+</body>
+</html>

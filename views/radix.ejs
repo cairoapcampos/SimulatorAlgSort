@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%- include('partials/head') %>
+<body>
+  <%- include('partials/cabecalho') %>
+
+  <main>
+    <section class="painel radix">
+      <div class="info">
+        <span>maior: <strong id="maior">-</strong></span>
+        <span>exp: <strong id="exp">-</strong></span>
+        <span>i: <strong id="i">-</strong></span>
+        <span>digito: <strong id="digito">-</strong></span>
+        <span>posicao: <strong id="posicao">-</strong></span>
+        <span>comparações: <strong id="comps">0</strong></span>
+        <span>escritas: <strong id="movs">0</strong></span>
+        <span>passo: <strong id="contador">0</strong></span>
+      </div>
+
+      <div class="rotulo-fila"><code>A</code></div>
+      <div id="fila-a" class="fila"></div>
+      <div class="rotulo-fila"><code>contagem</code></div>
+      <div id="fila-c" class="fila"></div>
+      <div class="rotulo-fila"><code>saida</code></div>
+      <div id="fila-s" class="fila"></div>
+
+      <p id="explicacao" class="explicacao"></p>
+
+      <%- include('partials/controles') %>
+
+      <div class="legenda">
+        <span><i class="c-valor"></i> elemento A[i] em uso</span>
+        <span><i class="c-comp"></i> posição de contagem</span>
+        <span><i class="c-ok"></i> posição de saida / ordenado</span>
+        <span><span class="dig">0</span> dígito analisado (zeros à esquerda esmaecidos)</span>
+      </div>
+
+      <%- include('partials/resumo') %>
+    </section>
+
+    <div class="lateral">
+      <%- include('partials/codigo') %>
+      <%- include('partials/complexidade') %>
+    </div>
+  </main>
+
+  <%- include('partials/scripts') %>
+</body>
+</html>

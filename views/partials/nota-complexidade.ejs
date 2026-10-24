@@ -1,0 +1,4 @@
+<% if (complexidade.notaHtml) { %>
+  <% /* notaHtml contém apenas o conteúdo estático de src/algoritmos.js. */ %>
+  <p class="nota"><% if (complexidade.notaMedia) { %><sup><%= complexidade.notaMedia %></sup> <% } %><%- complexidade.notaHtml %></p>
+<% } %>

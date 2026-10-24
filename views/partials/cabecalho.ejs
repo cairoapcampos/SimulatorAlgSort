@@ -1,0 +1,27 @@
+<header<% if (algoritmo === 'home') { %> class="cabecalho-home"<% } %>>
+  <%- include('navegacao') %>
+  <% if (algoritmo !== 'home') { %><h1><%= titulo %></h1><% } %>
+  <% if (locals.acao) { %>
+  <form id="form" method="get" action="<%= acao %>" data-vmin="<%= vmin %>" data-vmax="<%= vmax %>">
+    <div class="modos">
+      <label for="modo">Vetor:</label>
+      <select id="modo" name="modo">
+        <option value="padrao" <%= modo === 'padrao' ? 'selected' : '' %>>Padrão</option>
+        <option value="digitar" <%= modo === 'digitar' ? 'selected' : '' %>>Digitar</option>
+        <option value="aleatorio" <%= modo === 'aleatorio' ? 'selected' : '' %>>Aleatório</option>
+      </select>
+    </div>
+    <div class="opcao" data-modo="aleatorio" <%= modo !== 'aleatorio' ? 'hidden' : '' %>>
+      <label for="tam">Tamanho</label>
+      <input id="tam" type="number" min="2" max="<%= max %>" value="<%= tamanho %>" <%= modo !== 'aleatorio' ? 'disabled' : '' %>>
+      <button type="button" id="aleatorio">🎲 Gerar novo</button>
+    </div>
+    <div class="opcao" data-modo="digitar" <%= modo !== 'digitar' ? 'hidden' : '' %>>
+      <label for="array">Valores:</label>
+      <input id="array" name="array" value="<%= valorCampo %>" placeholder="<%= padrao.join(', ') %>">
+      <button type="submit">Carregar</button>
+    </div>
+  </form>
+  <% if (erro) { %><p class="erro"><%= erro %></p><% } %>
+  <% } %>
+</header>

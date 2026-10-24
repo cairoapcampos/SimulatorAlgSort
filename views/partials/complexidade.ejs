@@ -1,0 +1,11 @@
+<section class="complexidade">
+  <h2>Complexidade do <%= nome %></h2>
+  <dl>
+    <dt>Melhor caso</dt><dd><%= complexidade.melhor %></dd>
+    <dt>Caso médio</dt><dd><%= complexidade.medio %><% if (complexidade.notaMedia) { %><sup><%= complexidade.notaMedia %></sup><% } %></dd>
+    <dt>Pior caso</dt><dd><%= complexidade.pior %></dd>
+    <dt>Espaço auxiliar</dt><dd><%= complexidade.espaco %></dd>
+    <dt>Estável</dt><dd><%= complexidade.estavel %></dd>
+  </dl>
+  <%- include('nota-complexidade') %>
+</section>

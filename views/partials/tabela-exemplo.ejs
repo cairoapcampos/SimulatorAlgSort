@@ -1,0 +1,36 @@
+<figure class="figura-tabela">
+  <figcaption id="tabela-<%= tabela.numero %>">Tabela <%= tabela.numero %>. <%= tabela.titulo %></figcaption>
+<div class="tabela-rolavel" tabindex="0" role="region" aria-labelledby="tabela-<%= tabela.numero %>">
+  <table class="tabela-exemplo" aria-labelledby="tabela-<%= tabela.numero %>" aria-describedby="legenda-tabela-<%= tabela.numero %>">
+    <thead>
+      <tr><% tabela.colunas.forEach((coluna) => { %><th scope="col"><%= coluna.titulo %></th><% }) %></tr>
+    </thead>
+    <tbody>
+      <% tabela.linhas.forEach((linha, indiceLinha) => { let anterior = null; %>
+        <tr>
+          <th scope="row"><%= linha[0] %></th>
+          <% linha.slice(1).forEach((valor, k) => { %>
+            <td><% if (valor === null) { %><span aria-label="Esta chamada não ocorreu">—</span><% } else if (tabela.colunas[k + 1].vetor) {
+              const posicaoDecimal = tabela.destacarDigito && k + 1 === tabela.colunas.length - 1 ? indiceLinha : null;
+              const vetor = prepararVetor(valor, tabela.destacarDigito ? null : anterior, posicaoDecimal);
+              anterior = valor;
+            %><%- include('vetor-exemplo', { vetor, gapGrupos: tabela.destacarGrupos ? linha[1] : null }) %><% } else if (tabela.colunas[k + 1].grupos) { %>
+              <% valor.forEach((grupo, indiceGrupo) => { %><%= indiceGrupo ? ', ' : '' %><code class="grupo-shell-<%= indiceGrupo %>">(<%= grupo.join(',') %>)</code><% }) %>
+            <% } else { %><%= valor %><% } %></td>
+          <% }) %>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+</figure>
+<div class="legenda-tabela" id="legenda-tabela-<%= tabela.numero %>">
+  <% if (tabela.destacarGrupos) { %>
+    <span>Em cada passagem, uma mesma cor identifica os índices de uma subsequência e seus elementos nos vetores de entrada e de saída. Os índices começam em zero.</span>
+  <% } else if (tabela.destacarDigito) { %>
+    <span><span class="valor-alterado">Dígito em amarelo</span>: posição analisada no vetor após a passagem. Quando a posição não existe, considera-se zero, sem exibi-lo.</span>
+  <% } else { %>
+    <span><span class="valor-alterado">Valores em amarelo</span>: alterados em relação ao vetor anterior da mesma linha.</span>
+  <% } %>
+  <% if (tabela.explicacao) { %><span><%= tabela.explicacao %></span><% } %>
+</div>
