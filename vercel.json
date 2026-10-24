@@ -1,9 +1,9 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "express",
+  "version": 2,
   "functions": {
-    "server.js": {
+    "api/index.js": {
       "includeFiles": "{views,SortAlgs}/**/*"
     }
-  }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
