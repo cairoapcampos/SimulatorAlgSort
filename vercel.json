@@ -1,9 +1,8 @@
 {
-  "version": 2,
+  "framework": "express",
   "functions": {
-    "api/index.js": {
+    "server.js": {
       "includeFiles": "{views,SortAlgs}/**/*"
     }
-  },
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  }
 }

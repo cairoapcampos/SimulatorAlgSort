@@ -144,28 +144,3 @@ npm start
 Abra [http://localhost:3000](http://localhost:3000). Use o menu superior para escolher um dos simuladores.
 
 Se o `npm` não for encontrado, carregue o nvm com `. ~/.nvm/nvm.sh` em um terminal compatível.
-
-## Scripts disponíveis
-
-| Comando | Descrição |
-|---|---|
-| `npm start` | Inicia o servidor Express com `node server.js` |
-
-## Deploy na Vercel pelo GitHub
-
-O projeto usa o [suporte nativo a Express da Vercel](https://vercel.com/docs/frameworks/backend/express), com Node.js 22. O arquivo `server.js` exporta a aplicação para a plataforma e mantém a execução local com `npm start`.
-
-1. Envie o projeto para um repositório no GitHub. Inclua `package-lock.json`, `vercel.json`, `server.js` e as pastas `src/`, `views/`, `public/` e `SortAlgs/`.
-2. No painel da Vercel, escolha **Add New → Project**, conecte sua conta GitHub e importe o repositório.
-3. Selecione a pasta que contém `package.json` como **Root Directory**.
-4. Utilize o preset **Express**, também definido em `vercel.json`. Mantenha as configurações padrão de instalação, build e diretório de saída, sem sobrescrevê-las.
-5. Clique em **Deploy**. O projeto não exige variáveis de ambiente nem uma pasta `dist`.
-6. Confira as páginas `/`, `/shell`, `/heap` e `/radix` na URL publicada, incluindo os controles dos simuladores.
-
-O `vercel.json` inclui os templates de `views/` e os arquivos de `SortAlgs/` na função do servidor. Os recursos de `public/` são servidos pela CDN da plataforma.
-
-### Atualizações automáticas
-
-Confira nas configurações da Vercel qual é a **Production Branch**; normalmente é `main`. Após conectar o repositório, pushes nessa branch geram novas implantações em produção. Outras branches e pull requests geram URLs de prévia.
-
-A [integração entre GitHub e Vercel](https://vercel.com/docs/git/vercel-for-github) realiza essas implantações sem exigir a CLI da Vercel ou um workflow de GitHub Actions.
